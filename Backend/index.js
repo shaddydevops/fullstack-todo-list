@@ -23,15 +23,19 @@ const app = express();
 const PORT = 3000;
 
 // Use CORS Middleware
-app.use(cors());
+app.use(cors(
+  {
+    origin: 'http://localhost:3001', // Adjust this to your frontend URL
+}
+));
 
 // Middleware to parse JSON data
 app.use(express.json());
 
 // MongoDB Connection URI
-const MONGO_URI = 'mongodb://127.0.0.1:27017';
+// const MONGO_URI = 'mongodb://127.0.0.1:27017';
 //const MONGO_URI = 'mongodb://mongo-shared-dev:fikTpih4U2!@20.218.241.192:27017/?directConnection=true&appName=mongosh+1.8.2&authMechanism=DEFAULT';
-
+const MONGO_URI = 'mongodb://db:27017/';
 const dbname = 'todos';
 
 // Connect to MongoDB
@@ -103,12 +107,12 @@ app.get('/api/gettodos', async (req, res) => {
 
   try {
 
-    const todoList = await Todos.find();
+    const todoList = await Todos.find({});
 
-    return res.status(201).send({ todoList });
+    return res.status(200).json(todoList);
   } catch (error) {
     // if (error.errors.title)
-    //   return res.status(400).send({ message: "the Title field is required" });
+    //   return res.status(400).send({ message: "the Title field is required" });S
 
     // if (error.errors.description)
     //   return res
@@ -134,7 +138,7 @@ app.get('/', async (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 

@@ -7,9 +7,10 @@ const useGetTodos = (setTodos, setNumOfPages, setPage) => {
   const fetchTodos = async (page, limit) => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://fullstack-todolist-upnv.onrender.com/todos?page=${page}&limit=${limit}`
-      );
+      const response = await fetch(`http://localhost:3000/api/gettodos?page=${page}&limit=${limit}`);
+      // const response = await fetch(
+      //   `https://fullstack-todolist-upnv.onrender.com/todos?page=${page}&limit=${limit}`
+      // );
       const data = await response.json();
       setTodos(data.todos);
       setNumOfPages(data.numOfPages);
