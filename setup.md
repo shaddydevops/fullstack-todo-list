@@ -55,9 +55,9 @@ docker-compose up -d
 ## Stopping the Application
 
 To stop the running containers, you can use the following command:
-
+```bash
 docker-compose down
-
+```
 
 This command will stop and remove all the containers defined in the `docker-compose.yml` file.
 
