@@ -8,6 +8,7 @@ This is a fullstack todo list application built with Node.js, Express, MongoDB, 
 - [Docker Compose](https://docs.docker.com/compose/install/) installed on your machine.
 
 ## Project Structure
+```bash
 fullstack-todo-list/
 ├── Backend/
 │ ├── src/
@@ -19,14 +20,14 @@ fullstack-todo-list/
 │ └── ...
 ├── docker-compose.yml
 └── README.md
-
+```
 
 ## Building the Application
 
 To build the application, navigate to the root directory of the project (where the `docker-compose.yml` file is located) and run the following command:
-
+```bash
 docker-compose build
-
+```
 
 This command will build the Docker images for both the frontend and backend services.
 
@@ -34,9 +35,9 @@ This command will build the Docker images for both the frontend and backend serv
 
 To run the application, use the following command:
 
-
+```bash
 docker-compose up
-
+```
 
 This command will start all the services defined in the `docker-compose.yml` file. The application will be accessible at the following URLs:
 
@@ -47,9 +48,9 @@ This command will start all the services defined in the `docker-compose.yml` fil
 ### Running in Detached Mode
 
 If you want to run the containers in detached mode (in the background), use the `-d` flag:
-
+```bash
 docker-compose up -d
-
+```
 
 ## Stopping the Application
 
