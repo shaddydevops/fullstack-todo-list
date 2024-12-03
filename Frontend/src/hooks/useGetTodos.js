@@ -13,7 +13,8 @@ const useGetTodos = (setTodos, setNumOfPages, setPage) => {
       // );
       const data = await response.json();
       console.log("Fetched Todos:", data);
-      setTodos(data.todos);
+      // setTodos(data.todos);
+      setTodos(data);
       setNumOfPages(data.numOfPages);
       if (page > data.numOfPages) setPage(data.numOfPages);
     } catch (error) {
