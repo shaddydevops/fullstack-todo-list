@@ -56,7 +56,8 @@ const todoSchema = new mongoose.Schema({
   date: { type: String, },
   activity: { type: String, },
   description: { type: String, },
-  strStatus: { type: String, }
+  strStatus: { type: String, },
+  isCompleted: { type: Boolean, }
 });
 
 
