@@ -30,15 +30,18 @@ export const getTodos = async (req, res) => {
 };
 
 export const addTodo = async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, activity, date, isCompleted } = req.body;
 
   try {
     const todo = await TodoModel.create({
       title,
       description,
+      activity,
+      date,
+      isCompleted // Ensure this is included
     });
 
-    return res.status(201).json({ todo });
+    return res.status(201).json(todo);
   } catch (error) {
     if (error.errors.title)
       return res.status(400).json({ message: "the Title field is required" });
