@@ -137,6 +137,26 @@ app.get('/', async (req, res) => {
 
 });
 
+
+// Route: Delete a todo by ID
+app.delete('/api/todos/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedTodo = await Todos.deleteOne({ _id: id });
+    if (deletedTodo.deletedCount === 0) {
+      return res.status(404).json({ message: "No such Todo with this id" });
+    }
+    return res.status(204).json(); // No content to return
+  } catch (error) {
+    if (error.kind === "ObjectId") {
+      return res.status(404).json({ message: "ID is not compatible with ObjectId format" });
+    }
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 // Start the server
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${PORT}`);

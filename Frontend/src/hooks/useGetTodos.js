@@ -12,6 +12,7 @@ const useGetTodos = (setTodos, setNumOfPages, setPage) => {
       //   `https://fullstack-todolist-upnv.onrender.com/todos?page=${page}&limit=${limit}`
       // );
       const data = await response.json();
+      console.log("Fetched Todos:", data);
       setTodos(data.todos);
       setNumOfPages(data.numOfPages);
       if (page > data.numOfPages) setPage(data.numOfPages);
