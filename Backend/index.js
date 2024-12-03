@@ -157,6 +157,33 @@ app.delete('/api/todos/:id', async (req, res) => {
   }
 });
 
+
+// Route: Update a todo by ID
+app.put('/api/todos/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, description, activity, date, strStatus, isCompleted } = req.body; // Include any fields you want to update
+
+  try {
+    const updatedTodo = await Todos.findByIdAndUpdate(
+      id,
+      { title, description, activity, date, strStatus, isCompleted }, // Update the fields
+      { new: true, runValidators: true } // Return the updated document and run validators
+    );
+
+    if (!updatedTodo) {
+      return res.status(404).json({ message: "No such Todo with this id" });
+    }
+
+    return res.status(200).json(updatedTodo); // Return the updated todo
+  } catch (error) {
+    if (error.kind === "ObjectId") {
+      return res.status(404).json({ message: "ID is not compatible with ObjectId format" });
+    }
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 // Start the server
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
